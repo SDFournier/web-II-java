@@ -1,0 +1,76 @@
+https://www.planttext.com/
+
+
+@startuml
+
+title UCES - EJemplos Videos
+
+
+package LoginModule{
+	class User{
+
+		-int id
+		-boolean enabled
+		-String password
+		-String username
+	}
+
+	class User_Role{
+
+		-int id
+		-String role
+		+FK User user [user_id]
+
+	}
+
+}
+
+
+class Pais{
+
+	- int id
+	- string nombre
+	- int rank
+
+}
+
+class Task{
+	-int id
+	-String edad
+	-String nombre
+	-String peso
+	-String pais
+	+FK Avatar avatar [avatar_id]
+}
+
+class Desarrollador{
+	-int id
+	-int numero
+	-String descripcion
+	+FK Task task [task_id]
+
+}
+
+class Avatar{
+
+	-int id
+	-String email
+	-String webTaskl
+
+}
+
+
+
+Task "1" --> "1" Avatar: oneToOne 
+
+Task "1" --o "1..*" Desarrollador: oneToMany 
+
+User "1" -- "1..*" User_Role: oneToMany 
+
+Persona "1..*" -- "1..*" Pais: ManyToMany 
+
+
+
+
+
+@enduml
